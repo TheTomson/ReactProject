@@ -34,8 +34,7 @@ const AddFilterContent = styled.p``;
 export const FilterComponent: FC = () => {
   return (
     <WrapperFilter>
-      TEST CZY DZIAŁA
-      {/* <FilterSpan>
+      <FilterSpan>
         Rows are filtered by the following conditions starting from the top
       </FilterSpan>
       <FristRow>
@@ -83,7 +82,7 @@ export const FilterComponent: FC = () => {
         <AddFilterIMG></AddFilterIMG>
         <AddFilterContent>Add Filter</AddFilterContent>
         <NinthSelectedList>Choose property</NinthSelectedList>
-      </FourthRow> */}
+      </FourthRow>
     </WrapperFilter>
   );
 };
