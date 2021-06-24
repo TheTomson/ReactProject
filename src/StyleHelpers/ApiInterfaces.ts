@@ -49,11 +49,3 @@ export interface IComment {
   email: string;
   body: string;
 }
-
-// const fetchPhoto = async (id: number) => {
-//   const response = await fetch(
-//     `https://jsonplaceholder.typicode.com/photos/${id}`
-//   );
-//   const data = await response.json();
-//   return data;
-// };

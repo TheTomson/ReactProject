@@ -55,9 +55,6 @@ const sortClick = () => {
   arr.sort();
   console.log(arr);
 };
-const filterClick = () => {
-  <FilterComponent></FilterComponent>;
-};
 
 export const EntitiesParent: FC = () => {
   const handleFS = useFullScreenHandle();
@@ -72,6 +69,7 @@ export const EntitiesParent: FC = () => {
   const viewList = () => {
     setView(false);
   };
+  const [showFilter, setShowFilter] = useState<boolean>(false);
 
   return (
     <Wrapper5>
@@ -80,8 +78,10 @@ export const EntitiesParent: FC = () => {
           <option>ALL</option>
         </SelectList>
         <Dots>...</Dots>
-        <SortButton onClick={(e) => sortClick()}>Sort</SortButton>
-        <FilterButton onClick={(e) => filterClick()}>Filter</FilterButton>
+        <SortButton onClick={sortClick}>Sort</SortButton>
+        <FilterButton onClick={() => setShowFilter(!showFilter)}>
+          Filter
+        </FilterButton>
         <FullScreenButton
           onClick={() => {
             handleFS.enter();
@@ -104,6 +104,7 @@ export const EntitiesParent: FC = () => {
         <MosaicView onClick={viewMosaic}>Mosaic View</MosaicView>
         <ListView onClick={viewList}>List View</ListView>
       </Navigation>
+      {showFilter && <FilterComponent />}
       <FullScreen handle={handleFS}>
         <EntitiesBlocks mosaic={view}></EntitiesBlocks>
       </FullScreen>

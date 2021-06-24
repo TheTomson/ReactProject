@@ -16,6 +16,8 @@ import { ICommentReducer } from "../../redux/Reducers/commentReducer";
 import { makeStyles } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import { act } from "react-dom/test-utils";
+import { ChangeEvent } from "react";
+import { loggUserID } from "../../StyleHelpers/CurrentLogUser";
 
 const Wrapper4 = styled.div`
   width: 77%;
@@ -265,7 +267,7 @@ export const RightContent: FC = () => {
   const [activePage, setCurrentPage] = useState(1);
   const indexOfLastComment = activePage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
-  const resumeComments = comments.comments;
+  let resumeComments = comments.comments;
   const handleChangePage = (event: any, newPage: any) => {
     setCurrentPage(newPage);
   };
@@ -276,6 +278,27 @@ export const RightContent: FC = () => {
   const userid = user?.id;
   const photo = photos.photo[userid - 1];
   const lastpub = posts.post.slice(1, 4);
+
+  const [inputText, setInputText] = useState<string>("");
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value;
+    setInputText(text);
+  };
+  if (inputText != "") {
+    resumeComments = resumeComments.filter((comment) =>
+      comment.name.includes(inputText.toLowerCase())
+    );
+  }
+
+  const [follow, setFollow] = useState<string>("unfollowed");
+  const changeHandler = (el: any) => {
+    const text = el.target.value;
+    setFollow(text);
+  };
+
+  if (follow != "unfollowed") {
+    resumeComments = resumeComments.filter((el) => el.postId == loggUserID);
+  }
 
   return (
     <Wrapper4>
@@ -309,8 +332,12 @@ export const RightContent: FC = () => {
       <MultipleItems></MultipleItems>
       <SpanAndFilter>
         <Resume>Resume your work</Resume>
-        <FilterRight placeholder="Filter by Title"></FilterRight>
-        <Followed>
+        <FilterRight
+          placeholder="Filter by Title"
+          value={inputText}
+          onChange={inputHandler}
+        ></FilterRight>
+        <Followed value={follow} onChange={changeHandler}>
           <option value="unfollowed">Unfollowed</option>
           <option value="followed">Followed</option>
         </Followed>
