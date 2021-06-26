@@ -1,8 +1,14 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import styled from "styled-components";
 import { EntitiesBlocks } from "./EntitiesBlocks";
 import { FilterComponent } from "../common/Filter";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts } from "../../redux/Actions/postActions";
+import { IPostReducer } from "../../redux/Reducers/postReducer";
+import { IState } from "../../redux/Reducers/rootReducer";
+import { loggUserID } from "../../StyleHelpers/CurrentLogUser";
+import { ChangeEvent } from "react";
 
 const Wrapper5 = styled.div`
   width: 77%;
@@ -47,30 +53,62 @@ const Filter = styled.input``;
 const FollowedList = styled.select``;
 const MosaicView = styled.button``;
 const ListView = styled.button``;
-const sortClick = () => {
-  let x = document.getElementsByClassName("sc-tAEdG eTMfpy").item;
-  console.log(x);
-  let arr = [];
-  arr.push(x);
-  arr.sort();
-  console.log(arr);
-};
 
-export const EntitiesParent: FC = () => {
+type fetchPosts = ReturnType<typeof fetchPosts>;
+export const EntitiesParent: FC = (props: any) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch<fetchPosts>(fetchPosts());
+  }, []);
+  const posts = useSelector<IState, IPostReducer>((state) => ({
+    ...state.post,
+  }));
+  let post = posts.post;
   const handleFS = useFullScreenHandle();
   const [fullScreen, setFullScreen] = useState<boolean>(false);
   const changeFullScreen = () => {
     setFullScreen(!fullScreen);
   };
-  const [view, setView] = useState<boolean>(false);
+  const [view, setView] = useState<boolean>(true);
   const viewMosaic = () => {
     setView(true);
   };
   const viewList = () => {
     setView(false);
   };
+  const [sortBtn, setSortBtn] = useState<boolean>(true);
+  const sortHandler = () => {
+    setSortBtn(!sortBtn);
+    post.sort((a, b) => {
+      if (a.title > b.title) {
+        return 1;
+      } else if (a.title < b.title) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+  };
   const [showFilter, setShowFilter] = useState<boolean>(false);
+  const [inputText, setInputText] = useState<string>("");
+  const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const text = e.target.value;
+    setInputText(text);
+  };
 
+  if (inputText != "") {
+    post = post.filter((post) => post.title.includes(inputText.toLowerCase()));
+  }
+  const [follow, setFollow] = useState<string>("Unfollowed");
+  const changeHandler = (el: any) => {
+    const text = el.target.value;
+    setFollow(text);
+  };
+  let postLength = 32;
+  if (follow != "Unfollowed") {
+    post = post.filter((el) => el.userId == loggUserID);
+    postLength = post.length;
+  }
   return (
     <Wrapper5>
       <Navigation>
@@ -78,7 +116,7 @@ export const EntitiesParent: FC = () => {
           <option>ALL</option>
         </SelectList>
         <Dots>...</Dots>
-        <SortButton onClick={sortClick}>Sort</SortButton>
+        <SortButton onClick={sortHandler}>Sort</SortButton>
         <FilterButton onClick={() => setShowFilter(!showFilter)}>
           Filter
         </FilterButton>
@@ -96,17 +134,26 @@ export const EntitiesParent: FC = () => {
         >
           Share
         </ShareButton>
-        <Filter placeholder="Search..."></Filter>
-        <FollowedList>
-          <option>Followed</option>
-          <option>Unfollowed</option>
+        <Filter
+          placeholder="Search..."
+          value={inputText}
+          onChange={inputHandler}
+        ></Filter>
+        <FollowedList value={follow} onChange={changeHandler}>
+          <option value="Unfollowed">Unfollowed</option>
+          <option value="Followed">Followed</option>
         </FollowedList>
         <MosaicView onClick={viewMosaic}>Mosaic View</MosaicView>
         <ListView onClick={viewList}>List View</ListView>
       </Navigation>
       {showFilter && <FilterComponent />}
+      {sortBtn}
       <FullScreen handle={handleFS}>
-        <EntitiesBlocks mosaic={view}></EntitiesBlocks>
+        <EntitiesBlocks
+          mosaic={view}
+          selectList={postLength}
+          sortAndFilter={post}
+        ></EntitiesBlocks>
       </FullScreen>
     </Wrapper5>
   );

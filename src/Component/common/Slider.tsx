@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { Component } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 const WorkspaceDiv = styled.div`
   height: 200px;
@@ -30,6 +31,11 @@ const WorkText = styled.p`
   font-weight: bold;
   font-size: 18px;
 `;
+const StyledLink = styled(Link)`
+  color: black;
+  font-size: 30px;
+  text-decoration: none;
+`;
 
 export class MultipleItems extends Component {
   render() {
@@ -43,66 +49,43 @@ export class MultipleItems extends Component {
     return (
       <WorkspaceDiv>
         <Slider {...settings}>
-          <WorkSpaceDivOne>
-            <WorkImg src="./media/podpis2.jpeg"></WorkImg>
-            <WorkImg2 src="./media/settings.png"></WorkImg2>
-            <WorkText>Client Contract</WorkText>
-          </WorkSpaceDivOne>
-          <WorkSpaceDivOne>
-            <WorkImg src="./media/podpis2.jpeg"></WorkImg>
-            <WorkImg2 src="./media/settings.png"></WorkImg2>
-            <WorkText>Supplier Contract</WorkText>
-          </WorkSpaceDivOne>
-          <WorkSpaceDivOne>
-            <WorkImg src="./media/podpis2.jpeg"></WorkImg>
-            <WorkImg2 src="./media/settings.png"></WorkImg2>
-            <WorkText>Corporate</WorkText>
-          </WorkSpaceDivOne>
-          <WorkSpaceDivOne>
-            <WorkImg src="./media/podpis2.jpeg"></WorkImg>
-            <WorkImg2 src="./media/settings.png"></WorkImg2>
-            <WorkText>Group Norms</WorkText>
-          </WorkSpaceDivOne>
-          <WorkSpaceDivOne>
-            <WorkImg src="./media/podpis2.jpeg"></WorkImg>
-            <WorkImg2 src="./media/settings.png"></WorkImg2>
-            <WorkText>Real Estate Contract</WorkText>
-          </WorkSpaceDivOne>
+          <StyledLink to="/workspaces">
+            <WorkSpaceDivOne>
+              <WorkImg src="./media/podpis2.jpeg"></WorkImg>
+              <WorkImg2 src="./media/settings.png"></WorkImg2>
+              <WorkText>Client Contract</WorkText>
+            </WorkSpaceDivOne>
+          </StyledLink>
+          <StyledLink to="/workspaces">
+            <WorkSpaceDivOne>
+              <WorkImg src="./media/podpis2.jpeg"></WorkImg>
+              <WorkImg2 src="./media/settings.png"></WorkImg2>
+              <WorkText>Supplier Contract</WorkText>
+            </WorkSpaceDivOne>
+          </StyledLink>
+          <StyledLink to="/workspaces">
+            <WorkSpaceDivOne>
+              <WorkImg src="./media/podpis2.jpeg"></WorkImg>
+              <WorkImg2 src="./media/settings.png"></WorkImg2>
+              <WorkText>Corporate</WorkText>
+            </WorkSpaceDivOne>
+          </StyledLink>
+          <StyledLink to="/workspaces">
+            <WorkSpaceDivOne>
+              <WorkImg src="./media/podpis2.jpeg"></WorkImg>
+              <WorkImg2 src="./media/settings.png"></WorkImg2>
+              <WorkText>Group Norms</WorkText>
+            </WorkSpaceDivOne>
+          </StyledLink>
+          <StyledLink to="/workspaces">
+            <WorkSpaceDivOne>
+              <WorkImg src="./media/podpis2.jpeg"></WorkImg>
+              <WorkImg2 src="./media/settings.png"></WorkImg2>
+              <WorkText>Real Estate Contract</WorkText>
+            </WorkSpaceDivOne>
+          </StyledLink>
         </Slider>
       </WorkspaceDiv>
     );
   }
 }
-
-// const WorkspaceDiv = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-evenly;
-//   flex-direction: row;
-// `;
-// const WorkSpaceDivOne = styled.div`
-//   border: 0.5px solid;
-//   border-radius: 5px;
-//   position: relative;
-//   background-color: white;
-//   width: 270px;
-//   margin-right: 25px;
-//   bottom: 30px;
-// `;
-// const WorkImg = styled.img`
-//   height: 80px;
-//   width: 100%;
-// `;
-// const WorkImg2 = styled.img`
-//   height: 35px;
-//   position: relative;
-//   left: 20px;
-//   bottom: 15px;
-// `;
-// const WorkText = styled.p`
-//   position: relative;
-//   left: 85px;
-//   bottom: 40px;
-//   font-weight: bold;
-//   font-size: 18px;
-// `;

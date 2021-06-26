@@ -2,7 +2,9 @@ import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { fetchPhoto } from "../../redux/Actions/photoActions";
+import { fetchPosts } from "../../redux/Actions/postActions";
 import { IPhotoReducer } from "../../redux/Reducers/photoReducer";
+import { IPostReducer } from "../../redux/Reducers/postReducer";
 import { IState } from "../../redux/Reducers/rootReducer";
 
 const Wrapper5 = styled.div<{ active: boolean }>`
@@ -43,7 +45,7 @@ const PostsTitle = styled.span`
   margin-bottom: 7px;
 `;
 const PostsContent = styled.p``;
-
+type fetchPosts = ReturnType<typeof fetchPosts>;
 type fetchPhoto = ReturnType<typeof fetchPhoto>;
 export const EntitiesBlocks = (props: any) => {
   const dispatch = useDispatch();
@@ -53,296 +55,28 @@ export const EntitiesBlocks = (props: any) => {
   const photos = useSelector<IState, IPhotoReducer>((state) => ({
     ...state.photo,
   }));
+  useEffect(() => {
+    dispatch<fetchPosts>(fetchPosts());
+  }, []);
+  const posts = useSelector<IState, IPostReducer>((state) => ({
+    ...state.post,
+  }));
+  let lastpub = props.sortAndFilter.slice(0, props.selectList);
   return (
     <Wrapper5 active={props.mosaic}>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>ABC generic company</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Sungrid</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Mongrid</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Yoring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Goring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Loring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Doring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Floring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Baringo</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>SunoGrido</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>ABC generic company</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Sungrid</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Mongrid</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Yoring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Goring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Loring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Doring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Floring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Baringo</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>SunoGrido</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>ABC generic company</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Sungrid</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Mongrid</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Yoring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Goring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Loring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Doring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Floring</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>Baringo</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>SunoGrido</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>SunoGrido</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
-      <Posts active={props.mosaic}>
-        <PostsImg
-          src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
-        ></PostsImg>
-        <PostsTAndC>
-          <PostsTitle>SunoGrido</PostsTitle>
-          <PostsContent>Carcas 1050, Districto Capital,Venezuela</PostsContent>
-        </PostsTAndC>
-      </Posts>
+      {lastpub.map((e: any) => (
+        <Posts active={props.mosaic}>
+          <PostsImg
+            src={photos.photo[Math.floor(Math.random() * 3000)]?.url}
+          ></PostsImg>
+          <PostsTAndC>
+            <PostsTitle>{e.title}</PostsTitle>
+            <PostsContent>
+              Carcas 1050, Districto Capital,Venezuela
+            </PostsContent>
+          </PostsTAndC>
+        </Posts>
+      ))}
     </Wrapper5>
   );
 };

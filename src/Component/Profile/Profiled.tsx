@@ -199,7 +199,6 @@ export const Profiled: FC = () => {
     const text = e.target.value;
     setInputName(text);
   };
-  console.log("name " + name);
   const [description, setInpuTableFieldescription] = useState<string>(
     `${users.user?.company?.name}`
   );

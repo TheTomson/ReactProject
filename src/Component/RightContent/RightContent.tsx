@@ -103,38 +103,6 @@ const SeeMorePub = styled.p`
   bottom: 10px;
   font-weight: bold;
 `;
-const WorkspaceDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-direction: row;
-`;
-const WorkSpaceDivOne = styled.div`
-  border: 0.5px solid;
-  border-radius: 5px;
-  position: relative;
-  background-color: white;
-  width: 270px;
-  margin-right: 25px;
-  bottom: 30px;
-`;
-const WorkImg = styled.img`
-  height: 80px;
-  width: 100%;
-`;
-const WorkImg2 = styled.img`
-  height: 35px;
-  position: relative;
-  left: 20px;
-  bottom: 15px;
-`;
-const WorkText = styled.p`
-  position: relative;
-  left: 85px;
-  bottom: 40px;
-  font-weight: bold;
-  font-size: 18px;
-`;
 const Workspace = styled.span`
   position: relative;
   margin-left: 20px;
@@ -314,7 +282,7 @@ export const RightContent: FC = () => {
         <LastestPublic>
           <TextPubRight>Lastest publications</TextPubRight>
           {lastpub.map((e) => (
-            <LastestPublicSec id="test">
+            <LastestPublicSec>
               <ImgLPub src={photos.photo[e.id - 1]?.url}></ImgLPub>
               <TextLPub>{e.body}</TextLPub>
               <AuthorLPub>

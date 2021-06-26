@@ -10,6 +10,7 @@ import Ecosystem from "./Views/Ecosystem";
 import Entities from "./Views/Entities";
 import Test from "./Views/Test";
 import Profile from "./Views/Profile";
+import Workspaces from "./Views/Workspaces";
 function App() {
   return (
     <Router>
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path="/profile">
           <Profile />
+        </Route>
+        <Route path="/workspaces">
+          <Workspaces />
         </Route>
       </Switch>
     </Router>
